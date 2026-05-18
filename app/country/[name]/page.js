@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import AiChat from "@/components/AiChat";
 
 const Page = async ({ params }) => {
   const { name } = await params;
@@ -77,6 +78,7 @@ const Page = async ({ params }) => {
               {country.cca2}
             </p>
           </div>
+          <AiChat />
         </div>
       </div>
     </div>
