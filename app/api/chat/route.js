@@ -1,21 +1,25 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
-const genAi = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+import Groq from "groq-sdk";
 
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+console.log("KEY:", process.env.GROQ_API_KEY);
 export async function POST(req) {
   try {
     const { message } = await req.json();
-    const model = genAi.getGenerativeModel({
-      model: "gemini-2.0-flash",
+
+    const completion = await groq.chat.completions.create({
+      model: "llama-3.3-70b-versatile", // free and very capable
+      messages: [{ role: "user", content: message }],
     });
-    const result = await model.generateContent(message);
-    const response = result.response.text();
-    return Response.json({
-      reply: response,
-    });
+
+    const reply = completion.choices[0].message.content;
+    return Response.json({ reply });
   } catch (error) {
     console.log(error);
-    return Response.json({
-      error: "Something went wrong",
-    });
+    const status = error?.status === 429 ? 429 : 500;
+    const message =
+      error?.status === 429
+        ? "Too many requests — please wait and try again."
+        : "Something went wrong";
+    return Response.json({ error: message }, { status });
   }
 }
