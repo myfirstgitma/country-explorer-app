@@ -2,7 +2,6 @@
 import { Copy, Check } from "lucide-react";
 import { useState } from "react";
 
-
 const AiChat = () => {
   const [message, setMessage] = useState("");
   const [reply, setReply] = useState("");
@@ -61,6 +60,11 @@ const AiChat = () => {
         type="text"
         placeholder="Type a quastion here..."
         onChange={(e) => setMessage(e.target.value)}
+        onKeyDown={(event) => {
+          if (event.key === "Enter") {
+            handleAskAi();
+          }
+        }}
         className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder:text-slate-400 outline-none transition-all duration-200 focus:ring-2 focus:ring-indigo-500 focus:bg-white focus:border-transparent"
       />
 
