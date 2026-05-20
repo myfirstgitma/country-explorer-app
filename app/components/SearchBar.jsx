@@ -8,7 +8,7 @@ const SearchBar = ({search, onSearch}) => {
         placeholder="search countires"
         value={search}
         onChange={(e) => onSearch(e.target.value)}
-        className=" border rounded px-3 py-1 text-sm bg-white text-black"
+        className=" w-full border rounded px-3 py-1 text-sm bg-white text-black"
       />
     </>
   );

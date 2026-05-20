@@ -1,5 +1,7 @@
 "use client";
+import { Copy, Check } from "lucide-react";
 import { useState } from "react";
+
 
 const AiChat = () => {
   const [message, setMessage] = useState("");
