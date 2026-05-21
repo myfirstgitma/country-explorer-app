@@ -1,14 +1,26 @@
 import Groq from "groq-sdk";
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
-console.log("KEY:", process.env.GROQ_API_KEY);
+
 export async function POST(req) {
   try {
-    const { message } = await req.json();
+    const { message, country } = await req.json(); // ← add country here
 
     const completion = await groq.chat.completions.create({
-      model: "llama-3.3-70b-versatile", // free and very capable
-      messages: [{ role: "user", content: message }],
+      model: "llama-3.3-70b-versatile",
+      messages: [
+        {
+          role: "system",
+          content: `You are a helpful travel and culture expert. 
+            The user is currently viewing the page for ${country}. 
+            When they refer to "this country", "here", or "the country", 
+            they mean ${country}. Always answer in the context of ${country}.`,
+        }, // ← close first object, comma
+        {
+          role: "user",
+          content: message,
+        }, // ← separate second object
+      ],
     });
 
     const reply = completion.choices[0].message.content;
