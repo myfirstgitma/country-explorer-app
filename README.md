@@ -18,7 +18,7 @@ React
 Tailwind CSS
 REST Countries API
 JavaScript (ES6+)
-📸 Preview
+ 
 
 Add screenshots or GIFs here later
 
