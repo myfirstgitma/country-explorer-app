@@ -2,6 +2,8 @@
 import { Copy, Check } from "lucide-react";
 import { useState } from "react";
 import { useParams } from "next/navigation";
+import Typewriter from "./Typewriter";
+import ShinyButton from "./ShinyButton";
 
 const AiChat = () => {
   const [message, setMessage] = useState("");
@@ -22,7 +24,6 @@ const AiChat = () => {
     } catch (error) {
       console.log(error);
     }
-     
   };
 
   const handleAskAi = async () => {
@@ -46,7 +47,7 @@ const AiChat = () => {
     } finally {
       setLoading(false);
     }
-  };  
+  };
 
   return (
     <div className="w-full max-w-xl mx-auto p-5 md:p-8 border border-slate-200 rounded-2xl shadow-xl bg-white mt-6 md:mt-10">
@@ -54,7 +55,8 @@ const AiChat = () => {
       <div className="flex items-center gap-2 mb-6">
         <div className="w-2 h-6 bg-indigo-600 rounded-full shrink-0"></div>
         <h1 className="text-xl md:text-2xl font-extrabold text-slate-800 tracking-tight">
-          Ask AI About {countryName}      </h1>
+          Ask AI About {countryName}{" "}
+        </h1>
       </div>
 
       {/* Input */}
@@ -71,10 +73,10 @@ const AiChat = () => {
       />
 
       {/* Button */}
-      <button
+      <ShinyButton
         onClick={handleAskAi}
         disabled={loading || !message.trim()}
-        className="w-full mt-4 px-8 py-3 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-semibold rounded-xl shadow-md shadow-indigo-200 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+        loading={loading}
       >
         {loading ? (
           <span className="flex items-center justify-center gap-2">
@@ -102,7 +104,7 @@ const AiChat = () => {
         ) : (
           "Ask AI"
         )}
-      </button>
+      </ShinyButton>
 
       {/* Error */}
       {error && (
@@ -133,6 +135,7 @@ const AiChat = () => {
           </div>
           <div className="p-5 border border-indigo-100 rounded-2xl bg-indigo-50/50 text-slate-800 leading-relaxed shadow-sm break-words">
             {reply}
+            <Typewriter text={reply} speed={20} />
           </div>
         </div>
       )}
