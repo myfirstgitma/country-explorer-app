@@ -4,7 +4,7 @@ const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 export async function POST(req) {
   try {
-    const { message, country } = await req.json(); // ← add country here
+    const { message, country } = await req.json();  
 
     const completion = await groq.chat.completions.create({
       model: "llama-3.3-70b-versatile",
@@ -15,11 +15,11 @@ export async function POST(req) {
             The user is currently viewing the page for ${country}. 
             When they refer to "this country", "here", or "the country", 
             they mean ${country}. Always answer in the context of ${country}.`,
-        }, // ← close first object, comma
+        },  
         {
           role: "user",
           content: message,
-        }, // ← separate second object
+        },  
       ],
     });
 
