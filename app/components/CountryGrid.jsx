@@ -5,6 +5,8 @@ import Link from "next/link";
 import Magnet from "@/components/Magnet";
 import ElectricBorder from "@/components/ElectricBorder";
 import Aurora from "@/components/Aurora";
+   import { Compass, Globe, MapPin, Search, Eye, Sparkles } from "lucide-react";
+
 
 const CountryGrid = ({ countries }) => {
   const [search, setSearch] = useState("");
@@ -48,11 +50,19 @@ const CountryGrid = ({ countries }) => {
       >
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
           {/* Title */}
-          <h1
-            className={`text-xl font-bold ${dark ? "text-white" : "text-gray-900"}`}
-          >
-            Country Explorer
-          </h1>
+          {/* ===== ATTRACTIVE TITLE SECTION ===== */}
+
+          <div className="group relative flex items-center gap-2">
+            <div className="relative">
+              <Compass className="w-8 h-8 md:w-10 md:h-10 text-indigo-500 group-hover:rotate-12 transition-transform duration-500" />
+              <span className="absolute inset-0 animate-ping bg-indigo-400 rounded-full opacity-20 group-hover:opacity-40"></span>
+            </div>
+            <h1 className="relative text-2xl md:text-3xl lg:text-4xl font-black tracking-tight">
+              <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                Country Explorer
+              </span>
+            </h1>
+          </div>
 
           {/* SearchBar */}
           <div className="w-full md:w-auto md:flex-1 md:max-w-sm">
