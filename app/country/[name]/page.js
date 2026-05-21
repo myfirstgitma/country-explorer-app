@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import AiChat from "@/components/AiChat";
-import SplitText from "@/components/SplitText";
 import Aurora from "@/components/Aurora";
+import SplitText from "@/components/SplitText";
 
 const Page = async ({ params }) => {
   const { name } = await params;
@@ -51,7 +51,7 @@ const Page = async ({ params }) => {
             text={country.name.common}
             className="text-4xl font-bold text-gray-800 mb-6"
           />
-
+            
           {/* Info grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-600">
             <p>
