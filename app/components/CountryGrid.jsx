@@ -46,12 +46,14 @@ const CountryGrid = ({ countries }) => {
       {/* NAV */}
       {/* NAV */}
       <nav
-        className={`sticky top-0 z-10 shadow-md px-4 py-3 ${dark ? "bg-gray-800" : "bg-white"}`}
+        className={`sticky top-0 z-10 shadow-md px-4 py-3 backdrop-blur-md border-b ${
+          dark
+            ? "bg-gray-900/70 border-gray-700/50"
+            : "bg-white/60 border-indigo-100/50"
+        }`}
       >
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
           {/* Title */}
-          {/* ===== ATTRACTIVE TITLE SECTION ===== */}
-
           <div className="group relative flex items-center gap-2">
             <div className="relative">
               <Compass className="w-8 h-8 md:w-10 md:h-10 text-indigo-500 group-hover:rotate-12 transition-transform duration-500" />
@@ -71,20 +73,26 @@ const CountryGrid = ({ countries }) => {
 
           {/* Controls */}
           <div className="flex items-center gap-3 flex-wrap">
+            {/* Sort button */}
             <button
-              className="bg-amber-200 border border-black text-black rounded px-3 py-1 text-sm"
               onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
+              className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm font-semibold border transition-all duration-200 hover:scale-105 active:scale-95 ${
+                dark
+                  ? "bg-indigo-600/30 border-indigo-500/50 text-indigo-300 hover:bg-indigo-600/50"
+                  : "bg-indigo-50 border-indigo-300 text-indigo-700 hover:bg-indigo-100"
+              }`}
             >
               {sortOrder === "asc" ? "A → Z" : "Z → A"}
             </button>
 
+            {/* Region select */}
             <select
               value={region}
               onChange={(e) => setRegion(e.target.value)}
-              className={`border p-1.5 rounded-lg text-sm ${
+              className={`px-3 py-1.5 rounded-full text-sm font-semibold border transition-all duration-200 cursor-pointer outline-none ${
                 dark
-                  ? "bg-gray-700 text-white border-gray-600"
-                  : "bg-amber-500 text-black"
+                  ? "bg-purple-600/30 border-purple-500/50 text-purple-300 hover:bg-purple-600/50"
+                  : "bg-purple-50 border-purple-300 text-purple-700 hover:bg-purple-100"
               }`}
             >
               <option value="">All Continents</option>
@@ -95,12 +103,13 @@ const CountryGrid = ({ countries }) => {
               <option value="Oceania">Oceania</option>
             </select>
 
+            {/* Dark mode toggle */}
             <button
               onClick={() => setDarkMode(!darkMode)}
-              className={`text-sm px-3 py-1 rounded border ${
+              className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm font-semibold border transition-all duration-200 hover:scale-105 active:scale-95 ${
                 dark
-                  ? "bg-gray-700 text-white border-gray-600"
-                  : "bg-gray-100 text-black border-gray-300"
+                  ? "bg-amber-500/20 border-amber-400/50 text-amber-300 hover:bg-amber-500/30"
+                  : "bg-amber-50 border-amber-300 text-amber-700 hover:bg-amber-100"
               }`}
             >
               {dark ? "☀️ Light" : "🌙 Dark"}
