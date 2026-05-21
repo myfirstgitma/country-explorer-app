@@ -21,7 +21,7 @@ const AiChat = () => {
     } catch (error) {
       console.log(error);
     }
-    // return <div>AiChat</div>;
+     
   };
 
   const handleAskAi = async () => {
@@ -45,7 +45,7 @@ const AiChat = () => {
     } finally {
       setLoading(false);
     }
-  }; // ← closes handleAskAi
+  };  
 
   return (
     <div className="w-full max-w-xl mx-auto p-5 md:p-8 border border-slate-200 rounded-2xl shadow-xl bg-white mt-6 md:mt-10">
