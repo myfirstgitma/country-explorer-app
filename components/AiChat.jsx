@@ -1,6 +1,7 @@
 "use client";
 import { Copy, Check } from "lucide-react";
 import { useState } from "react";
+import { useParams } from "next/navigation";
 
 const AiChat = () => {
   const [message, setMessage] = useState("");
@@ -8,6 +9,7 @@ const AiChat = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
+  const { name } = useParams();
 
   const handleCopy = async () => {
     try {
@@ -19,7 +21,7 @@ const AiChat = () => {
     } catch (error) {
       console.log(error);
     }
-    return <div>AiChat</div>;
+    // return <div>AiChat</div>;
   };
 
   const handleAskAi = async () => {
@@ -30,7 +32,7 @@ const AiChat = () => {
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message }),
+        body: JSON.stringify({ message: message, country: name }),
       });
       const data = await response.json();
       if (data.error) {
