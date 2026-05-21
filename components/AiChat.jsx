@@ -10,6 +10,7 @@ const AiChat = () => {
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
   const { name } = useParams();
+  const countryName = decodeURIComponent(name);
 
   const handleCopy = async () => {
     try {
@@ -32,7 +33,7 @@ const AiChat = () => {
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: message, country: name }),
+        body: JSON.stringify({ message: message, country: countryName }),
       });
       const data = await response.json();
       if (data.error) {
@@ -53,8 +54,7 @@ const AiChat = () => {
       <div className="flex items-center gap-2 mb-6">
         <div className="w-2 h-6 bg-indigo-600 rounded-full shrink-0"></div>
         <h1 className="text-xl md:text-2xl font-extrabold text-slate-800 tracking-tight">
-          Ask AI About Countries
-        </h1>
+          Ask AI About {countryName}      </h1>
       </div>
 
       {/* Input */}
