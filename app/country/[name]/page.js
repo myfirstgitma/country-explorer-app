@@ -1,6 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import AiChat from "@/components/AiChat";
+import SplitText from "@/components/SplitText";
+import Aurora from "@/components/Aurora";
 
 const Page = async ({ params }) => {
   const { name } = await params;
@@ -22,6 +24,11 @@ const Page = async ({ params }) => {
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
+      <Aurora
+        colors={["#10b981", "#06b6d4", "#6366f1", "#8b5cf6"]}
+        speed={1}
+        opacity={0.5}
+      />
       {/* Back button */}
       <Link href="/">
         <button className="mb-8 px-5 py-2 bg-white shadow-md rounded-lg hover:bg-gray-200 transition font-semibold text-gray-700">
@@ -39,9 +46,11 @@ const Page = async ({ params }) => {
 
         <div className="p-8">
           {/* Country name */}
-          <h1 className="text-4xl font-bold text-gray-800 mb-6">
-            {country.name.common}
-          </h1>
+          {/* Country name */}
+          <SplitText
+            text={country.name.common}
+            className="text-4xl font-bold text-gray-800 mb-6"
+          />
 
           {/* Info grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-600">

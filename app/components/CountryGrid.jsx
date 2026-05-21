@@ -2,6 +2,9 @@
 import { useState } from "react";
 import SearchBar from "./SearchBar";
 import Link from "next/link";
+import Magnet from "@/components/Magnet";
+import ElectricBorder from "@/components/ElectricBorder";
+import Aurora from "@/components/Aurora";
 
 const CountryGrid = ({ countries }) => {
   const [search, setSearch] = useState("");
@@ -33,6 +36,11 @@ const CountryGrid = ({ countries }) => {
           : "bg-gray-100 text-black min-h-screen"
       }
     >
+      <Aurora
+        colors={["#6366f1", "#8b5cf6", "#06b6d4", "#10b981"]}
+        speed={1}
+        opacity={0.5}
+      />
       {/* NAV */}
       {/* NAV */}
       <nav
@@ -92,47 +100,68 @@ const CountryGrid = ({ countries }) => {
       </nav>
 
       {/* GRID */}
+      {/* GRID */}
+      {/* GRID */}
+      {/* GRID */}
+      {/* GRID */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 md:p-8">
         {sorted.map((country, index) => (
-          <Link
-            href={`/country/${encodeURIComponent(country.name.common)}`}
-            key={index}
-          >
-            <div
-              className={`rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer ${dark ? "bg-gray-800" : "bg-white"}`}
-            >
-              <img
-                src={country.flags.png}
-                alt={country.flags.alt || country.name.common}
-                className="w-full h-40 object-cover"
-              />
-              <div className="p-4">
-                <h2
-                  className={`text-lg font-bold mb-2 ${dark ? "text-white" : "text-gray-800"}`}
+          <Magnet key={index} strength={30}>
+            <ElectricBorder color="#6366f1">
+              <Link
+                href={`/country/${encodeURIComponent(country.name.common)}`}
+              >
+                <div
+                  className={`rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer ${
+                    dark ? "bg-gray-800" : "bg-white"
+                  }`}
                 >
-                  {country.name.common}
-                </h2>
-                <p
-                  className={`text-sm ${dark ? "text-gray-300" : "text-gray-600"}`}
-                >
-                  <span className="font-semibold">Capital:</span>{" "}
-                  {country.capital?.[0] || "N/A"}
-                </p>
-                <p
-                  className={`text-sm ${dark ? "text-gray-300" : "text-gray-600"}`}
-                >
-                  <span className="font-semibold">Region:</span>{" "}
-                  {country.region}
-                </p>
-                <p
-                  className={`text-sm ${dark ? "text-gray-300" : "text-gray-600"}`}
-                >
-                  <span className="font-semibold">Population:</span>{" "}
-                  {country.population.toLocaleString("nl-NL")}
-                </p>
-              </div>
-            </div>
-          </Link>
+                  <img
+                    src={country.flags.png}
+                    alt={country.flags.alt || country.name.common}
+                    className="w-full h-40 object-cover"
+                  />
+
+                  <div className="p-4">
+                    <h2
+                      className={`text-lg font-bold mb-2 ${
+                        dark ? "text-white" : "text-gray-800"
+                      }`}
+                    >
+                      {country.name.common}
+                    </h2>
+
+                    <p
+                      className={`text-sm ${
+                        dark ? "text-gray-300" : "text-gray-600"
+                      }`}
+                    >
+                      <span className="font-semibold">Capital:</span>{" "}
+                      {country.capital?.[0] || "N/A"}
+                    </p>
+
+                    <p
+                      className={`text-sm ${
+                        dark ? "text-gray-300" : "text-gray-600"
+                      }`}
+                    >
+                      <span className="font-semibold">Region:</span>{" "}
+                      {country.region}
+                    </p>
+
+                    <p
+                      className={`text-sm ${
+                        dark ? "text-gray-300" : "text-gray-600"
+                      }`}
+                    >
+                      <span className="font-semibold">Population:</span>{" "}
+                      {country.population.toLocaleString("nl-NL")}
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            </ElectricBorder>
+          </Magnet>
         ))}
       </div>
     </div>
