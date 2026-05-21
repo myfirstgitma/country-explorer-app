@@ -5,8 +5,7 @@ import Link from "next/link";
 import Magnet from "@/components/Magnet";
 import ElectricBorder from "@/components/ElectricBorder";
 import Aurora from "@/components/Aurora";
-   import { Compass, Globe, MapPin, Search, Eye, Sparkles } from "lucide-react";
-
+import { Compass, Globe, MapPin, Search, Eye, Sparkles } from "lucide-react";
 
 const CountryGrid = ({ countries }) => {
   const [search, setSearch] = useState("");
@@ -43,8 +42,7 @@ const CountryGrid = ({ countries }) => {
         speed={1}
         opacity={0.5}
       />
-      {/* NAV */}
-      {/* NAV */}
+
       <nav
         className={`sticky top-0 z-10 shadow-md px-4 py-3 backdrop-blur-md border-b ${
           dark
@@ -118,11 +116,6 @@ const CountryGrid = ({ countries }) => {
         </div>
       </nav>
 
-      {/* GRID */}
-      {/* GRID */}
-      {/* GRID */}
-      {/* GRID */}
-      {/* GRID */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 md:p-8">
         {sorted.map((country, index) => (
           <Magnet key={index} strength={30}>
